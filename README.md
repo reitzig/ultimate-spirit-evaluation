@@ -32,7 +32,8 @@ Here, all entries are average scores.
 The script expects the raw data to be assembled in a CSV file.
 It has to have columns `Team1`, `Team2`, `Evaluator`, and `Evaluated`;
 the first two identify the game (so you'd have four rows with the same 
-values here for each game), the other two whom scored whom.
+values here for each game), the other two who scored whom.
+All other columns are interpreted as (equally weighted) scoring categories.
 
 For [example](https://github.com/reitzig/ultimate-spirit-evaluation/blob/master/example/example-tournament.csv):
 
