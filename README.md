@@ -1,6 +1,6 @@
 You find here R functions for summarizing spirit scores for Ultimate tournaments.
 It is based on the 
-    [method that the WFDF uses](http://www.wfdf.org/sotg/spirit-rules-a-scoring).
+    [method the WFDF uses](http://www.wfdf.org/sotg/spirit-rules-a-scoring).
 
 ## Quickstart
 
@@ -34,7 +34,7 @@ It has to have columns `Team1`, `Team2`, `Evaluator`, and `Evaluated`;
 the first two identify the game (so you'd have four rows with the same 
 values here for each game), the other two whom scored whom.
 
-For [example](TODO):
+For [example](https://github.com/reitzig/ultimate-spirit-evaluation/blob/master/example/example-tournament.csv):
 
 ~~~
 Team1,Team2,Evaluator,Evaluated,Rules,Contact,Fair,Attitude,Communication
@@ -113,9 +113,11 @@ parameters `from` and `to` set to the same team; self-explanatory.
 ### Creating presentable documents
 
 You can use knitr to create HTML and PDF documents presenting the scores.
-Find an example 
-    [here](TODO);
-there are few limits to what you can do -- if you know your way around R.
+Find example 
+    [code here](https://github.com/reitzig/ultimate-spirit-evaluation/blob/master/example/example-summary.Rmd)
+and
+    [website here](https://htmlpreview.github.io/?https://github.com/reitzig/ultimate-spirit-evaluation/blob/master/example/example-summary.html).
+There are few limits to what you can do -- if you know your way around R.
 
 ### Advantages over spreadsheets
 
