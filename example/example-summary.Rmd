@@ -1,0 +1,52 @@
+---
+title: "Example Tournament"
+author: "A Nameless Team"
+date: "January 30, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load the necessary libraries (have to be installed)
+# and the custom functions
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE)
+source(file = "evaluate-spirit.R")
+
+# Load the data; errors may be reported here
+data <- loadSpiritData(file = "example-tournament.csv")
+dataTeams <- teams(spiritData = data)
+```
+
+```{r cars, results='asis', echo=FALSE}
+# A straight up table of aggregate scores, sorted by decreasing spirit score
+kable(leaderBoard(spiritData = data), "html", 
+      caption = "Summary", 
+      col.names = c("Team", "Spirit Score", "Self Score"),
+      align = c('l', 'c', 'c')) %>%
+  kable_styling(full_width = F)
+
+# A comparison matrix. If two teams played more than once, the table
+# shows the average of the individual scores.
+kable(comparisonMatrix(spiritData = data), "html", 
+      caption = "Comparison Matrix", 
+      align = c(rep('c', length(dataTeams)))) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c("From", "To" = length(dataTeams)))
+
+# Nice things can be done here:
+# https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
+
+# One table per team with all received scores.
+for ( team in dataTeams ) {
+  table <- score(spiritData = data, to = team, average = FALSE) %>% 
+    select(From, Score, scoreNames(data)) %>%
+    arrange(From)
+  print(kable(table, "html",
+              caption = team,
+              align = c('l', 'c', 'c', 'c', 'c', 'c', 'c')) %>%
+    kable_styling(full_width = F)
+  )
+}
+```
